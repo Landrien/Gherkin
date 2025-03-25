@@ -85,13 +85,13 @@ public class StepDefinition {
         assert(produit.isDisplayed());
     }
 
-    @When("Je clique sur le bouton de paiement")
-    public void jeCliqueSurLeBoutonDePaiement() {
+    @When("Je clique sur le bouton de checkout")
+    public void jeCliqueSurLeBoutonDeCheckout() {
         driver.findElement(By.id("checkout")).click();
     }
 
-    @Then("Je suis redirigé vers la page de paiement")
-    public void jeSuisRedirigéVersLaPageDePaiement() {
+    @Then("Je suis redirigé vers la page de checkout")
+    public void jeSuisRedirigéVersLaPageDeCheckout() {
         WebElement checkoutPage = driver.findElement(By.id("first-checkout_info_container"));
         assert(checkoutPage.isDisplayed());
     }
@@ -106,7 +106,7 @@ public class StepDefinition {
         driver.findElement(By.id("last-name")).sendKeys(arg0);
     }
 
-    @And("Je saisie l{string}utilisateur {string}")
+    @And("Je saisie l'adresse de l'utilisateur {string}")
     public void jeSaisieLAdresseDeLUtilisateur(String arg0) {
         driver.findElement(By.id("postal-code")).sendKeys(arg0);
     }
@@ -119,5 +119,50 @@ public class StepDefinition {
 
     @Then("La commande est validée")
     public void laCommandeEstValidée() {
+        WebElement validationMessage = driver.findElement(By.xpath("//h2[@class='complete-header']"));
+        assert(validationMessage.getText().equals("THANK YOU FOR YOUR ORDER"));
+    }
+
+    @When("Je clique sur le bouton de tri par prix croissant")
+    public void jeCliqueSurLeBoutonDeTriParPrixCroissant() {
+        driver.findElement(By.xpath("//option[@value='lohi']/..")).click();
+        driver.findElement(By.xpath("//option[@value='lohi']")).click();
+    }
+
+    @Then("Le produit avec le prix le plus bas est affiché en premier")
+    public void leProduitAvecLePrixLePlusBasEstAffichéEnPremier() {
+        WebElement firstProduct = driver.findElement(By.xpath("//div[1]/div/div/a/div[@class='inventory_item_name ']"));
+        assert(firstProduct.getText().equals("Sauce Labs Onesie"));
+    }
+
+    @And("Le produit avec le prix le plus élevé est affiché en dernier")
+    public void leProduitAvecLePrixLePlusÉlevéEstAffichéEnDernier() {
+        WebElement lastProduct = driver.findElement(By.xpath("//div[6]/div/div/a/div[@class='inventory_item_name ']"));
+        assert(lastProduct.getText().equals("Sauce Labs Fleece Jacket"));
+    }
+
+    @When("Je clique sur le bouton de la sidebar")
+    public void jeCliqueSurLeBoutonDeLaSidebar() {
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+    }
+
+    @And("Je clique sur le bouton de deconnexion")
+    public void jeCliqueSurLeBoutonDeDeconnexion() {
+        driver.findElement(By.id("logout_sidebar_link")).click();
+    }
+
+    @Then("Je suis redirigé vers la page de connexion")
+    public void jeSuisRedirigéVersLaPageDeConnexion() {
+        WebElement loginButton = driver.findElement(By.id("login-button"));
+        assert(loginButton.isDisplayed());
+    }
+
+    @And("L'utilisateur ajoute deux produits au panier")
+    public void lUtilisateurAjouteDeuxProduitsAuPanier() {
+        
+    }
+
+    @Then("Le panier doit contenir {int} produits")
+    public void lePanierDoitContenirProduits(int arg0) {
     }
 }
