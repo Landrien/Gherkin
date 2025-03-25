@@ -1,4 +1,8 @@
 package steps;
+import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.Given;
@@ -9,6 +13,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepDefinition {
+
+    @Before
+    public void setup(){
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver.exe");
+    }
+    @BeforeStep
+    public void setupStep(){
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver.exe");
+    }
+
+    @AfterStep
+    public void tearDownStep(){
+        //driver.quit();
+    }
+
+    @After
+    public void tearDown(){
+        driver.quit();
+    }
+
+
+
     WebDriver driver = new ChromeDriver();
     @Given("Je rentre l'url {string}")
     public void userIsLogged(String url) {
@@ -157,12 +183,14 @@ public class StepDefinition {
         assert(loginButton.isDisplayed());
     }
 
-    @And("L'utilisateur ajoute deux produits au panier")
+    /*@And("L'utilisateur ajoute deux produits au panier")
     public void lUtilisateurAjouteDeuxProduitsAuPanier() {
         
     }
 
     @Then("Le panier doit contenir {int} produits")
     public void lePanierDoitContenirProduits(int arg0) {
-    }
+    }*/
+
+
 }
