@@ -5,7 +5,7 @@ Feature: Deconnexion de l'application
     When Je saisie un identifiant valide
     And Je saisie un mot de passe valide
     And Je clique sur le bouton de connexion
-    Then Je suis connecté à l'application
+    Then L'utilisateur est sur la page de produits
 
     Scenario: Deconnexion de l'application
     Given L'utilisateur est sur la page de produits

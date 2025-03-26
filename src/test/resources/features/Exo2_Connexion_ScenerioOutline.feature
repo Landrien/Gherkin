@@ -5,7 +5,7 @@ Feature: Connexion à l'application
     When Je saisie un identifiant valide "<username>"
     And Je saisie un mot de passe valide "<password>"
     And Je clique sur le bouton de connexion
-    Then Je suis connecté à l'application
+    Then L'utilisateur est sur la page de produits
 
     Examples:
       | username | password |

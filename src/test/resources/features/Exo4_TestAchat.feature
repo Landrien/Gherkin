@@ -5,7 +5,7 @@ Feature: L'achat d'un produit
     When Je saisie un identifiant valide
     And Je saisie un mot de passe valide
     And Je clique sur le bouton de connexion
-    Then Je suis connecté à l'application
+    Then L'utilisateur est sur la page de produits
 
   Scenario Outline: Achat d'un produit
     Given L'utilisateur est sur la page de produits

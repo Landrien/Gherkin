@@ -5,7 +5,7 @@ Feature: Tri des produits
     When Je saisie un identifiant valide
     And Je saisie un mot de passe valide
     And Je clique sur le bouton de connexion
-    Then Je suis connecté à l'application
+    Then L'utilisateur est sur la page de produits
 
   Scenario: Tri des produits par prix croissant
     Given L'utilisateur est sur la page de produits
